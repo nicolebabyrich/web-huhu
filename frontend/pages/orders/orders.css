@@ -1,0 +1,2 @@
+/* Kiểu trình bày cục bộ cho danh sách đơn hàng. */
+body[data-page="orders"] .order-card { min-width: 0; }

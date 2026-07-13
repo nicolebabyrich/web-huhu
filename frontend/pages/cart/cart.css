@@ -1,0 +1,4 @@
+/* Kiểu trình bày chỉ áp dụng cho trang giỏ hàng. */
+body[data-page="cart"] .cart-layout {
+  align-items: start;
+}

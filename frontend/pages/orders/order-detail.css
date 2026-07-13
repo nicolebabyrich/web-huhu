@@ -1,0 +1,2 @@
+/* Kiểu trình bày cục bộ cho chi tiết đơn hàng. */
+body[data-page="orders"] .order-detail { min-width: 0; }

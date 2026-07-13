@@ -1,0 +1,4 @@
+/* Kiểu trình bày chỉ áp dụng cho trang chủ. */
+body[data-page="home"] .hero {
+  isolation: isolate;
+}

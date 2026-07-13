@@ -1,0 +1,52 @@
+﻿@import url("./account.css");
+
+/* Kiểu trình bày cục bộ cho trang đăng nhập. */
+#login-form { width: 100%; }
+.password-input-wrap {
+  position: relative;
+  display: block;
+}
+
+.password-input-wrap .form-control {
+  padding-right: 3.35rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-gold-soft);
+  cursor: pointer;
+}
+
+.password-toggle:hover,
+.password-toggle:focus-visible {
+  background: rgba(210, 166, 87, 0.14);
+  color: var(--color-gold);
+}
+.password-toggle svg {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+.password-toggle .is-hidden {
+  display: none;
+}
+.password-toggle__icon {
+  display: inline-grid;
+  place-items: center;
+}
+

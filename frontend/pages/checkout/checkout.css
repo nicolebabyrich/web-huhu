@@ -1,0 +1,4 @@
+/* Kiểu trình bày cục bộ cho quy trình checkout. */
+body[data-page="checkout"] .checkout-layout {
+  align-items: start;
+}

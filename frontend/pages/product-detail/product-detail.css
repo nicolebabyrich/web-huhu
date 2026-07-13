@@ -1,0 +1,4 @@
+/* Kiểu trình bày chỉ áp dụng cho trang chi tiết sản phẩm. */
+body[data-page="products"] .product-detail {
+  scroll-margin-top: var(--header-height);
+}

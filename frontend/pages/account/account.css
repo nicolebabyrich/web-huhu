@@ -1,0 +1,5 @@
+/* Kiểu trình bày cục bộ dùng chung cho các trang tài khoản. */
+.auth-panel,
+.account-layout {
+  min-width: 0;
+}

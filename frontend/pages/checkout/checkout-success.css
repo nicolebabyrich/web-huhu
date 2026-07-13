@@ -1,0 +1,54 @@
+﻿/* Kiểu trình bày cục bộ cho kết quả thanh toán. */
+body[data-page="checkout-success"] .success-panel {
+  text-align: center;
+}
+body[data-page="checkout-success"] .empty-state {
+  min-height: 420px;
+}
+
+.success-visual {
+  position: relative;
+  display: inline-grid;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto var(--space-5);
+  place-items: center;
+}
+
+.success-visual img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  opacity: 0.94;
+}
+
+.success-visual__icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 2px solid var(--color-wine-900);
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+}
+
+.success-visual__icon svg {
+  display: block;
+  width: 25px;
+  height: 25px;
+  fill: currentColor;
+  stroke: none;
+}
+
+.success-actions {
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+

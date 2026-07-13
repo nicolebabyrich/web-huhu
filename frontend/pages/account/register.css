@@ -1,0 +1,4 @@
+@import url("./account.css");
+
+/* Kiểu trình bày cục bộ cho trang đăng ký. */
+#register-form { width: 100%; }

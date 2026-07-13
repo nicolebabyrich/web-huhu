@@ -1,0 +1,50 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.mjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "src/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "pages/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "img/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "asset/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.mjs"
+    },
+    {
+      "src": "/frontend/api/(.*)",
+      "dest": "server.mjs"
+    },
+    {
+      "src": "/frontend/(.*)",
+      "dest": "/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.html"
+    }
+  ]
+}
