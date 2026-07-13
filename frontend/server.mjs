@@ -1,4 +1,4 @@
-import { createReadStream, existsSync, readFileSync, statSync } from "node:fs";
+﻿import { createReadStream, existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, normalize, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -71,8 +71,8 @@ async function sendWelcomeEmail(email) {
     body: JSON.stringify({
       from,
       to: [email],
-      subject: "Máº­t thÆ° Ä‘áº§u tiÃªn tá»« áº¨N Store",
-      html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#2a0f12"><h1>Há»“ sÆ¡ Ä‘Ã£ Ä‘Æ°á»£c má»Ÿ</h1><p>Báº¡n Ä‘Ã£ Ä‘Äƒng kÃ½ nháº­n máº­t thÆ° tá»« áº¨N Store.</p><p>Nhá»¯ng vá»¥ Ã¡n lá»‹ch sá»­, board game má»›i vÃ  Æ°u Ä‘Ã£i dÃ nh cho Ä‘iá»u tra viÃªn sáº½ Ä‘Æ°á»£c gá»­i Ä‘áº¿n Ä‘á»‹a chá»‰ nÃ y.</p></div>`
+      subject: "MÃ¡ÂºÂ­t thÃ†Â° Ã„â€˜Ã¡ÂºÂ§u tiÃƒÂªn tÃ¡Â»Â« Ã¡ÂºÂ¨N Store",
+      html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;color:#2a0f12"><h1>HÃ¡Â»â€œ sÃ†Â¡ Ã„â€˜ÃƒÂ£ Ã„â€˜Ã†Â°Ã¡Â»Â£c mÃ¡Â»Å¸</h1><p>BÃ¡ÂºÂ¡n Ã„â€˜ÃƒÂ£ Ã„â€˜Ã„Æ’ng kÃƒÂ½ nhÃ¡ÂºÂ­n mÃ¡ÂºÂ­t thÃ†Â° tÃ¡Â»Â« Ã¡ÂºÂ¨N Store.</p><p>NhÃ¡Â»Â¯ng vÃ¡Â»Â¥ ÃƒÂ¡n lÃ¡Â»â€¹ch sÃ¡Â»Â­, board game mÃ¡Â»â€ºi vÃƒÂ  Ã†Â°u Ã„â€˜ÃƒÂ£i dÃƒÂ nh cho Ã„â€˜iÃ¡Â»Âu tra viÃƒÂªn sÃ¡ÂºÂ½ Ã„â€˜Ã†Â°Ã¡Â»Â£c gÃ¡Â»Â­i Ã„â€˜Ã¡ÂºÂ¿n Ã„â€˜Ã¡Â»â€¹a chÃ¡Â»â€° nÃƒÂ y.</p></div>`
     })
   });
   if (!result.ok) throw new Error("EMAIL_PROVIDER_ERROR");
@@ -84,46 +84,46 @@ async function handleNewsletter(request, response) {
     const body = await readJson(request);
     const email = String(body.email || "").trim().toLowerCase();
     const valid = /^[^\s@]+@[^\s@]+\.[a-z0-9-]{2,}$/i.test(email);
-    if (!valid) return sendJson(response, 400, { message: "Email khÃ´ng Ä‘Ãºng Ä‘á»‹nh dáº¡ng." });
-    if (newsletterSubscribers.has(email)) return sendJson(response, 409, { message: "Email nÃ y Ä‘Ã£ Ä‘Äƒng kÃ½ nháº­n máº­t thÆ°." });
+    if (!valid) return sendJson(response, 400, { message: "Email khÃƒÂ´ng Ã„â€˜ÃƒÂºng Ã„â€˜Ã¡Â»â€¹nh dÃ¡ÂºÂ¡ng." });
+    if (newsletterSubscribers.has(email)) return sendJson(response, 409, { message: "Email nÃƒÂ y Ã„â€˜ÃƒÂ£ Ã„â€˜Ã„Æ’ng kÃƒÂ½ nhÃ¡ÂºÂ­n mÃ¡ÂºÂ­t thÃ†Â°." });
 
     const delivery = await sendWelcomeEmail(email);
     if (!delivery.configured) {
       return sendJson(response, 503, {
-        message: "Há»‡ thá»‘ng email chÆ°a Ä‘Æ°á»£c cáº¥u hÃ¬nh. Vui lÃ²ng liÃªn há»‡ áº¨N Store hoáº·c thá»­ láº¡i sau.",
+        message: "HÃ¡Â»â€¡ thÃ¡Â»â€˜ng email chÃ†Â°a Ã„â€˜Ã†Â°Ã¡Â»Â£c cÃ¡ÂºÂ¥u hÃƒÂ¬nh. Vui lÃƒÂ²ng liÃƒÂªn hÃ¡Â»â€¡ Ã¡ÂºÂ¨N Store hoÃ¡ÂºÂ·c thÃ¡Â»Â­ lÃ¡ÂºÂ¡i sau.",
         code: "EMAIL_NOT_CONFIGURED"
       });
     }
     newsletterSubscribers.add(email);
-    return sendJson(response, 201, { message: "Máº­t thÆ° xÃ¡c nháº­n Ä‘Ã£ Ä‘Æ°á»£c gá»­i. Vui lÃ²ng kiá»ƒm tra há»™p thÆ° Ä‘áº¿n hoáº·c thÆ° rÃ¡c." });
+    return sendJson(response, 201, { message: "MÃ¡ÂºÂ­t thÃ†Â° xÃƒÂ¡c nhÃ¡ÂºÂ­n Ã„â€˜ÃƒÂ£ Ã„â€˜Ã†Â°Ã¡Â»Â£c gÃ¡Â»Â­i. Vui lÃƒÂ²ng kiÃ¡Â»Æ’m tra hÃ¡Â»â„¢p thÃ†Â° Ã„â€˜Ã¡ÂºÂ¿n hoÃ¡ÂºÂ·c thÃ†Â° rÃƒÂ¡c." });
   } catch (error) {
     const message = error.message === "PAYLOAD_TOO_LARGE"
-      ? "Dá»¯ liá»‡u gá»­i lÃªn quÃ¡ lá»›n."
-      : "KhÃ´ng thá»ƒ gá»­i máº­t thÆ° lÃºc nÃ y. Vui lÃ²ng thá»­ láº¡i sau.";
+      ? "DÃ¡Â»Â¯ liÃ¡Â»â€¡u gÃ¡Â»Â­i lÃƒÂªn quÃƒÂ¡ lÃ¡Â»â€ºn."
+      : "KhÃƒÂ´ng thÃ¡Â»Æ’ gÃ¡Â»Â­i mÃ¡ÂºÂ­t thÃ†Â° lÃƒÂºc nÃƒÂ y. Vui lÃƒÂ²ng thÃ¡Â»Â­ lÃ¡ÂºÂ¡i sau.";
     return sendJson(response, error.message === "PAYLOAD_TOO_LARGE" ? 413 : 502, { message });
   }
 }
 
-const defaultGeminiModel = "gemini-2.5-flash-lite";
+const defaultGeminiModel = "gemini-3.5-flash-lite";
 
-const chatbotScenarios = `Kịch bản hỗ trợ khách hàng cơ bản:
-1. Tư vấn sản phẩm: hỏi nhu cầu người chơi, số người, độ tuổi, thời lượng, rồi gợi ý xem trang Sản phẩm hoặc chi tiết Mật Án Lệ Chi Viên.
-2. Hướng dẫn mua hàng: xem sản phẩm -> thêm vào giỏ -> đăng nhập -> chọn địa chỉ -> áp voucher nếu có -> xác nhận thanh toán demo.
-3. Giỏ hàng và tồn kho: hướng dẫn tăng/giảm số lượng, chọn sản phẩm thanh toán; không khẳng định tồn kho nếu chưa có dữ liệu hiển thị.
-4. Đơn hàng: hướng dẫn khách vào mục Đơn hàng để xem trạng thái, chi tiết và yêu cầu hủy nếu còn điều kiện.
-5. Giao nhận: TP. HCM dự kiến 1-3 ngày làm việc; liên tỉnh 3-4 ngày làm việc; đơn trên 500.000 VNĐ miễn phí vận chuyển; giao cấp tốc TP. HCM 50.000 VNĐ.
-6. Đổi trả/bảo hành: đổi trả trong 03 ngày khi sản phẩm lỗi/nhầm hàng và còn hóa đơn; hướng dẫn liên hệ hotline 090-XXX-XXXX hoặc matan@anstore.vn.
-7. Tài khoản/quên mật khẩu: hướng dẫn đăng nhập, đăng ký, hoặc dùng luồng quên mật khẩu demo; nhắc không gửi mật khẩu/OTP cho chatbot.
-8. Thanh toán: giải thích đây là thanh toán giả lập trong phạm vi đồ án, không yêu cầu thông tin thẻ thật.`;
+const chatbotScenarios = `Ká»‹ch báº£n há»— trá»£ khÃ¡ch hÃ ng cÆ¡ báº£n:
+1. TÆ° váº¥n sáº£n pháº©m: há»i nhu cáº§u ngÆ°á»i chÆ¡i, sá»‘ ngÆ°á»i, Ä‘á»™ tuá»•i, thá»i lÆ°á»£ng, rá»“i gá»£i Ã½ xem trang Sáº£n pháº©m hoáº·c chi tiáº¿t Máº­t Ãn Lá»‡ Chi ViÃªn.
+2. HÆ°á»›ng dáº«n mua hÃ ng: xem sáº£n pháº©m -> thÃªm vÃ o giá» -> Ä‘Äƒng nháº­p -> chá»n Ä‘á»‹a chá»‰ -> Ã¡p voucher náº¿u cÃ³ -> xÃ¡c nháº­n thanh toÃ¡n demo.
+3. Giá» hÃ ng vÃ  tá»“n kho: hÆ°á»›ng dáº«n tÄƒng/giáº£m sá»‘ lÆ°á»£ng, chá»n sáº£n pháº©m thanh toÃ¡n; khÃ´ng kháº³ng Ä‘á»‹nh tá»“n kho náº¿u chÆ°a cÃ³ dá»¯ liá»‡u hiá»ƒn thá»‹.
+4. ÄÆ¡n hÃ ng: hÆ°á»›ng dáº«n khÃ¡ch vÃ o má»¥c ÄÆ¡n hÃ ng Ä‘á»ƒ xem tráº¡ng thÃ¡i, chi tiáº¿t vÃ  yÃªu cáº§u há»§y náº¿u cÃ²n Ä‘iá»u kiá»‡n.
+5. Giao nháº­n: TP. HCM dá»± kiáº¿n 1-3 ngÃ y lÃ m viá»‡c; liÃªn tá»‰nh 3-4 ngÃ y lÃ m viá»‡c; Ä‘Æ¡n trÃªn 500.000 VNÄ miá»…n phÃ­ váº­n chuyá»ƒn; giao cáº¥p tá»‘c TP. HCM 50.000 VNÄ.
+6. Äá»•i tráº£/báº£o hÃ nh: Ä‘á»•i tráº£ trong 03 ngÃ y khi sáº£n pháº©m lá»—i/nháº§m hÃ ng vÃ  cÃ²n hÃ³a Ä‘Æ¡n; hÆ°á»›ng dáº«n liÃªn há»‡ hotline 090-XXX-XXXX hoáº·c matan@anstore.vn.
+7. TÃ i khoáº£n/quÃªn máº­t kháº©u: hÆ°á»›ng dáº«n Ä‘Äƒng nháº­p, Ä‘Äƒng kÃ½, hoáº·c dÃ¹ng luá»“ng quÃªn máº­t kháº©u demo; nháº¯c khÃ´ng gá»­i máº­t kháº©u/OTP cho chatbot.
+8. Thanh toÃ¡n: giáº£i thÃ­ch Ä‘Ã¢y lÃ  thanh toÃ¡n giáº£ láº­p trong pháº¡m vi Ä‘á»“ Ã¡n, khÃ´ng yÃªu cáº§u thÃ´ng tin tháº» tháº­t.`;
 
-const chatbotSystemInstruction = `Bạn là Thư Đồng, trợ lý chăm sóc khách hàng của ẨN Store - website bán board game lịch sử Việt Nam.
-Nguyên tắc trả lời:
-- Luôn trả lời bằng tiếng Việt, thân thiện, ngắn gọn và rõ ý.
-- Hỗ trợ khách hỏi về sản phẩm, giỏ hàng, thanh toán giả lập, tài khoản, đơn hàng, đổi trả và thông tin cửa hàng.
-- Không bịa giá, tồn kho, trạng thái đơn hàng hoặc chính sách chưa được cung cấp.
-- Khi thiếu dữ liệu cụ thể, hướng khách xem trang sản phẩm, giỏ hàng, đơn hàng, tài khoản hoặc liên hệ cửa hàng.
-- Không yêu cầu khách gửi mật khẩu, mã OTP, số thẻ hoặc thông tin thanh toán nhạy cảm.
-- Giữ phong cách bí ẩn, lịch sự, phù hợp thương hiệu ẨN Store nhưng không dài dòng.
+const chatbotSystemInstruction = `Báº¡n lÃ  ThÆ° Äá»“ng, trá»£ lÃ½ chÄƒm sÃ³c khÃ¡ch hÃ ng cá»§a áº¨N Store - website bÃ¡n board game lá»‹ch sá»­ Viá»‡t Nam.
+NguyÃªn táº¯c tráº£ lá»i:
+- LuÃ´n tráº£ lá»i báº±ng tiáº¿ng Viá»‡t, thÃ¢n thiá»‡n, ngáº¯n gá»n vÃ  rÃµ Ã½.
+- Há»— trá»£ khÃ¡ch há»i vá» sáº£n pháº©m, giá» hÃ ng, thanh toÃ¡n giáº£ láº­p, tÃ i khoáº£n, Ä‘Æ¡n hÃ ng, Ä‘á»•i tráº£ vÃ  thÃ´ng tin cá»­a hÃ ng.
+- KhÃ´ng bá»‹a giÃ¡, tá»“n kho, tráº¡ng thÃ¡i Ä‘Æ¡n hÃ ng hoáº·c chÃ­nh sÃ¡ch chÆ°a Ä‘Æ°á»£c cung cáº¥p.
+- Khi thiáº¿u dá»¯ liá»‡u cá»¥ thá»ƒ, hÆ°á»›ng khÃ¡ch xem trang sáº£n pháº©m, giá» hÃ ng, Ä‘Æ¡n hÃ ng, tÃ i khoáº£n hoáº·c liÃªn há»‡ cá»­a hÃ ng.
+- KhÃ´ng yÃªu cáº§u khÃ¡ch gá»­i máº­t kháº©u, mÃ£ OTP, sá»‘ tháº» hoáº·c thÃ´ng tin thanh toÃ¡n nháº¡y cáº£m.
+- Giá»¯ phong cÃ¡ch bÃ­ áº©n, lá»‹ch sá»±, phÃ¹ há»£p thÆ°Æ¡ng hiá»‡u áº¨N Store nhÆ°ng khÃ´ng dÃ i dÃ²ng.
 
 ${chatbotScenarios}`;
 
@@ -202,12 +202,12 @@ async function callGeminiInteraction({ model, systemInstruction, input, temperat
 
 function geminiErrorMessage(error) {
   if (error.message === "GEMINI_NOT_CONFIGURED") {
-    return "Chatbot chưa đọc được Gemini API key trong file deploy/.env.";
+    return "Chatbot chÆ°a Ä‘á»c Ä‘Æ°á»£c Gemini API key trong file deploy/.env.";
   }
-  if (error.status === 429) return "Gemini đang quá tải hoặc hết quota. Bạn thử lại sau ít phút nhé.";
+  if (error.status === 429) return "Gemini Ä‘ang quÃ¡ táº£i hoáº·c háº¿t quota. Báº¡n thá»­ láº¡i sau Ã­t phÃºt nhÃ©.";
   return error.message && error.message !== "GEMINI_PROVIDER_ERROR"
-    ? `Gemini chưa phản hồi được: ${error.message}`
-    : "Không thể kết nối Gemini lúc này. Vui lòng thử lại sau.";
+    ? `Gemini chÆ°a pháº£n há»“i Ä‘Æ°á»£c: ${error.message}`
+    : "KhÃ´ng thá»ƒ káº¿t ná»‘i Gemini lÃºc nÃ y. Vui lÃ²ng thá»­ láº¡i sau.";
 }
 
 function handleChatbotSetup(response) {
@@ -226,11 +226,11 @@ async function handleChatbot(request, response) {
   try {
     const body = await readJson(request);
     const message = String(body.message || "").trim();
-    if (!message) return sendJson(response, 400, { message: "Vui lòng nhập nội dung cần hỏi." });
-    if (message.length > 700) return sendJson(response, 413, { message: "Câu hỏi quá dài. Vui lòng rút gọn lại." });
+    if (!message) return sendJson(response, 400, { message: "Vui lÃ²ng nháº­p ná»™i dung cáº§n há»i." });
+    if (message.length > 700) return sendJson(response, 413, { message: "CÃ¢u há»i quÃ¡ dÃ i. Vui lÃ²ng rÃºt gá»n láº¡i." });
 
     const pageHint = [body.page, body.path].filter(Boolean).join(" - ");
-    const input = pageHint ? `Khách đang ở: ${pageHint}\nCâu hỏi: ${message}` : message;
+    const input = pageHint ? `KhÃ¡ch Ä‘ang á»Ÿ: ${pageHint}\nCÃ¢u há»i: ${message}` : message;
     let lastError = null;
     for (const model of getChatModels()) {
       try {
@@ -241,7 +241,7 @@ async function handleChatbot(request, response) {
         });
         const reply = extractInteractionText(payload);
         return sendJson(response, 200, {
-          message: reply || "Mình chưa có phản hồi phù hợp lúc này. Bạn thử hỏi ngắn hơn nhé.",
+          message: reply || "MÃ¬nh chÆ°a cÃ³ pháº£n há»“i phÃ¹ há»£p lÃºc nÃ y. Báº¡n thá»­ há»i ngáº¯n hÆ¡n nhÃ©.",
           interactionId: "",
           model
         });
@@ -254,7 +254,7 @@ async function handleChatbot(request, response) {
     throw lastError || new Error("GEMINI_PROVIDER_ERROR");
   } catch (error) {
     const status = error.message === "PAYLOAD_TOO_LARGE" ? 413 : (error.status || 502);
-    const message = status === 413 ? "Dữ liệu gửi lên quá lớn." : geminiErrorMessage(error);
+    const message = status === 413 ? "Dá»¯ liá»‡u gá»­i lÃªn quÃ¡ lá»›n." : geminiErrorMessage(error);
     return sendJson(response, status, { message, code: error.providerCode || error.message || "CHATBOT_ERROR" });
   }
 }
@@ -263,17 +263,17 @@ createServer(async (request, response) => {
   const pathname = decodeURIComponent(requestUrl.pathname);
 
   if (pathname === "/api/newsletter/subscribe") {
-    if (request.method !== "POST") return sendJson(response, 405, { message: "PhÆ°Æ¡ng thá»©c khÃ´ng Ä‘Æ°á»£c há»— trá»£." });
+    if (request.method !== "POST") return sendJson(response, 405, { message: "PhÃ†Â°Ã†Â¡ng thÃ¡Â»Â©c khÃƒÂ´ng Ã„â€˜Ã†Â°Ã¡Â»Â£c hÃ¡Â»â€” trÃ¡Â»Â£." });
     return handleNewsletter(request, response);
   }
 
   if (pathname === "/api/chatbot/setup") {
-    if (request.method !== "GET") return sendJson(response, 405, { message: "PhÆ°Æ¡ng thá»©c khÃ´ng Ä‘Æ°á»£c há»— trá»£." });
+    if (request.method !== "GET") return sendJson(response, 405, { message: "PhÃ†Â°Ã†Â¡ng thÃ¡Â»Â©c khÃƒÂ´ng Ã„â€˜Ã†Â°Ã¡Â»Â£c hÃ¡Â»â€” trÃ¡Â»Â£." });
     return handleChatbotSetup(response);
   }
 
   if (pathname === "/api/chatbot") {
-    if (request.method !== "POST") return sendJson(response, 405, { message: "PhÆ°Æ¡ng thá»©c khÃ´ng Ä‘Æ°á»£c há»— trá»£." });
+    if (request.method !== "POST") return sendJson(response, 405, { message: "PhÃ†Â°Ã†Â¡ng thÃ¡Â»Â©c khÃƒÂ´ng Ã„â€˜Ã†Â°Ã¡Â»Â£c hÃ¡Â»â€” trÃ¡Â»Â£." });
     return handleChatbot(request, response);
   }
 
@@ -302,7 +302,7 @@ createServer(async (request, response) => {
   const isSafe = filePath.startsWith(frontendDir) || filePath.startsWith(rootDir);
   if (!isSafe || !existsSync(filePath) || statSync(filePath).isDirectory()) {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    response.end("Không tìm thấy tài nguyên.");
+    response.end("KhÃ´ng tÃ¬m tháº¥y tÃ i nguyÃªn.");
     return;
   }
 
@@ -312,7 +312,8 @@ createServer(async (request, response) => {
   });
   createReadStream(filePath).pipe(response);
 }).listen(port, () => {
-  console.log("ẨN Store đang chạy tại http://localhost:" + port + "/frontend/");
+  console.log("áº¨N Store Ä‘ang cháº¡y táº¡i http://localhost:" + port + "/frontend/");
 });
+
 
 
