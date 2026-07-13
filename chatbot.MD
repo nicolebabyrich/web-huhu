@@ -1,4 +1,4 @@
-> [!NOTE]
+﻿> [!NOTE]
 > **Note:** This version of the page covers the **Interactions API** . You can use the toggle on this page to switch to the [generateContent API version of this page](https://ai.google.dev/gemini-api/docs/generate-content/image-understanding).
 
 The Gemini API can generate text output from text, images, video, and audio
@@ -13,7 +13,7 @@ Here's a basic example:
     client = genai.Client()
 
     interaction = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="How does AI work?"
     )
     print(interaction.output_text)
@@ -26,7 +26,7 @@ Here's a basic example:
 
     async function main() {
       const interaction = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "How does AI work?",
       });
       console.log(interaction.output_text);
@@ -40,7 +40,7 @@ Here's a basic example:
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "How does AI work?"
       }'
 
@@ -73,7 +73,7 @@ over cost, latency, and intelligence. For more details, see the
     client = genai.Client()
 
     interaction = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="How does AI work?",
         generation_config={
             "thinking_level": "low"
@@ -89,7 +89,7 @@ over cost, latency, and intelligence. For more details, see the
 
     async function main() {
       const interaction = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "How does AI work?",
         generation_config: {
           thinking_level: "low",
@@ -106,7 +106,7 @@ over cost, latency, and intelligence. For more details, see the
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "How does AI work?",
         "generation_config": {
           "thinking_level": "low"
@@ -125,7 +125,7 @@ a `system_instruction` parameter to configure the model's behavior.
     client = genai.Client()
 
     interaction = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         system_instruction="You are a cat. Your name is Neko.",
         input="Hello there"
     )
@@ -140,7 +140,7 @@ a `system_instruction` parameter to configure the model's behavior.
 
     async function main() {
       const interaction = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "Hello there",
         system_instruction: "You are a cat. Your name is Neko.",
       });
@@ -155,7 +155,7 @@ a `system_instruction` parameter to configure the model's behavior.
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "system_instruction": "You are a cat. Your name is Neko.",
         "input": "Hello there"
       }'
@@ -170,7 +170,7 @@ temperature, using the `generation_config` parameter.
     client = genai.Client()
 
     interaction = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="Explain how AI works",
         generation_config={
             "temperature": 1.0
@@ -186,7 +186,7 @@ temperature, using the `generation_config` parameter.
 
     async function main() {
       const interaction = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "Explain how AI works",
         generation_config: {
           temperature: 1.0,
@@ -203,7 +203,7 @@ temperature, using the `generation_config` parameter.
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "Explain how AI works",
         "generation_config": {
           "temperature": 1.0
@@ -228,7 +228,7 @@ media files. The following example demonstrates providing an image:
     uploaded_file = client.files.upload(file="path/to/organ.jpg")
 
     interaction = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input=[
             {"type": "text", "text": "Tell me about this instrument"},
             {
@@ -253,7 +253,7 @@ media files. The following example demonstrates providing an image:
       });
 
       const interaction = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: [
           {type: "text", text: "Tell me about this instrument"},
           {
@@ -275,7 +275,7 @@ media files. The following example demonstrates providing an image:
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": [
           {"type": "text", "text": "Tell me about this instrument"},
           {
@@ -309,7 +309,7 @@ guide.
     client = genai.Client()
 
     stream = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="Explain how AI works",
         stream=True
     )
@@ -326,7 +326,7 @@ guide.
 
     async function main() {
       const stream = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "Explain how AI works",
         stream: true,
       });
@@ -349,7 +349,7 @@ guide.
       -H 'Content-Type: application/json' \
       --no-buffer \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "Explain how AI works",
         "stream": true
       }'
@@ -370,13 +370,13 @@ and the API automatically manages conversation history.
     client = genai.Client()
 
     interaction1 = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="I have 2 dogs in my house.",
     )
     print(interaction1.output_text)
 
     interaction2 = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="How many paws are in my house?",
         previous_interaction_id=interaction1.id,
     )
@@ -390,13 +390,13 @@ and the API automatically manages conversation history.
 
     async function main() {
       const interaction1 = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "I have 2 dogs in my house.",
       });
       console.log("Response 1:", interaction1.output_text);
 
       const interaction2 = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "How many paws are in my house?",
         previous_interaction_id: interaction1.id,
       });
@@ -411,7 +411,7 @@ and the API automatically manages conversation history.
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "I have 2 dogs in my house."
       }')
 
@@ -421,7 +421,7 @@ and the API automatically manages conversation history.
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "I have two dogs in my house. How many paws are in my house?",
         "previous_interaction_id": "'$INTERACTION_ID'"
       }'
@@ -436,13 +436,13 @@ Streaming can also be used for multi-turn conversations by combining
     client = genai.Client()
 
     interaction1 = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="I have 2 dogs in my house.",
     )
     print(interaction1.output_text)
 
     stream = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         input="How many paws are in my house?",
         previous_interaction_id=interaction1.id,
         stream=True
@@ -460,13 +460,13 @@ Streaming can also be used for multi-turn conversations by combining
 
     async function main() {
       const interaction1 = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "I have 2 dogs in my house.",
       });
       console.log("Response 1:", interaction1.output_text);
 
       const stream = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         input: "How many paws are in my house?",
         previous_interaction_id: interaction1.id,
         stream: true,
@@ -488,7 +488,7 @@ Streaming can also be used for multi-turn conversations by combining
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "I have 2 dogs in my house."
       }')
     INTERACTION_ID=$(echo "$RESPONSE1" | jq -r '.id')
@@ -498,7 +498,7 @@ Streaming can also be used for multi-turn conversations by combining
       -H 'Content-Type: application/json' \
       --no-buffer \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "input": "How many paws are in my house?",
         "previous_interaction_id": "'$INTERACTION_ID'",
         "stream": true
@@ -530,7 +530,7 @@ To use stateless mode:
     ]
 
     interaction1 = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         store=False,
         input=history
     )
@@ -545,7 +545,7 @@ To use stateless mode:
     })
 
     interaction2 = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-flash",
         store=False,
         input=history
     )
@@ -566,7 +566,7 @@ To use stateless mode:
       ];
 
       const interaction1 = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         store: false,
         input: history
       });
@@ -580,7 +580,7 @@ To use stateless mode:
       });
 
       const interaction2 = await ai.interactions.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-3.1-flash",
         store: false,
         input: history
       });
@@ -596,7 +596,7 @@ To use stateless mode:
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d '{
-        "model": "gemini-3.5-flash",
+        "model": "gemini-3.1-flash",
         "store": false,
         "input": [
           {
@@ -624,7 +624,7 @@ To use stateless mode:
       -H "x-goog-api-key: $GEMINI_API_KEY" \
       -H 'Content-Type: application/json' \
       -d "{
-        \"model\": \"gemini-3.5-flash\",
+        \"model\": \"gemini-3.1-flash\",
         \"store\": false,
         \"input\": $HISTORY
       }"

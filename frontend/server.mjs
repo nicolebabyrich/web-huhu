@@ -104,7 +104,7 @@ async function handleNewsletter(request, response) {
   }
 }
 
-const defaultGeminiModel = "gemini-3.5-flash-lite";
+const defaultGeminiModel = "gemini-3.1-flash-lite";
 
 const chatbotScenarios = `Ká»‹ch báº£n há»— trá»£ khÃ¡ch hÃ ng cÆ¡ báº£n:
 1. TÆ° váº¥n sáº£n pháº©m: há»i nhu cáº§u ngÆ°á»i chÆ¡i, sá»‘ ngÆ°á»i, Ä‘á»™ tuá»•i, thá»i lÆ°á»£ng, rá»“i gá»£i Ã½ xem trang Sáº£n pháº©m hoáº·c chi tiáº¿t Máº­t Ãn Lá»‡ Chi ViÃªn.
@@ -314,6 +314,7 @@ createServer(async (request, response) => {
 }).listen(port, () => {
   console.log("áº¨N Store Ä‘ang cháº¡y táº¡i http://localhost:" + port + "/frontend/");
 });
+
 
 
 

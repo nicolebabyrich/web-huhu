@@ -3,7 +3,7 @@
 }
 
 function getGeminiModel() {
-  return process.env.GEMINI_CHAT_MODEL || process.env.GEMINI_MODEL_CHAT || process.env.GEMINI_MODEL || "gemini-3.5-flash";
+  return process.env.GEMINI_CHAT_MODEL || process.env.GEMINI_MODEL_CHAT || process.env.GEMINI_MODEL || "gemini-3.1-flash";
 }
 
 module.exports = function handler(request, response) {
@@ -18,8 +18,9 @@ module.exports = function handler(request, response) {
     mode: "text-only",
     models: {
       chat: getGeminiModel(),
-      fallback: process.env.GEMINI_FALLBACK_MODEL || "gemini-3.5-flash-lite"
+      fallback: process.env.GEMINI_FALLBACK_MODEL || "gemini-3.1-flash-lite"
     }
   });
 };
+
 

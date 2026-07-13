@@ -1,4 +1,4 @@
-﻿const defaultGeminiModel = "gemini-3.5-flash";
+﻿const defaultGeminiModel = "gemini-3.1-flash";
 
 const chatbotScenarios = `Ká»‹ch báº£n há»— trá»£ khÃ¡ch hÃ ng cÆ¡ báº£n:
 1. TÆ° váº¥n sáº£n pháº©m: há»i nhu cáº§u ngÆ°á»i chÆ¡i, sá»‘ ngÆ°á»i, Ä‘á»™ tuá»•i, thá»i lÆ°á»£ng, rá»“i gá»£i Ã½ xem trang Sáº£n pháº©m hoáº·c chi tiáº¿t Máº­t Ãn Lá»‡ Chi ViÃªn.
@@ -48,7 +48,7 @@ function getGeminiModel() {
 }
 
 function getGeminiFallbackModel() {
-  return process.env.GEMINI_FALLBACK_MODEL || "gemini-3.5-flash-lite";
+  return process.env.GEMINI_FALLBACK_MODEL || "gemini-3.1-flash-lite";
 }
 
 function getChatModels() {
@@ -157,4 +157,5 @@ module.exports = async function handler(request, response) {
     return sendJson(response, status, { message, code: error.providerCode || error.message || "CHATBOT_ERROR" });
   }
 };
+
 
