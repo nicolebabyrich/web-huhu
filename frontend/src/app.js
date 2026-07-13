@@ -182,12 +182,26 @@ function writeChatbotState(nextState) {
 
 function formatChatbotReply(text = "") {
   const escaped = escapeHtml(String(text || "").trim());
-  const withBold = escaped.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  const withBold = escaped
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/__(.+?)__/g, "<strong>$1</strong>");
   const normalized = withBold
     .replace(/\s+(\d+\.\s+)/g, "\n$1")
     .replace(/\s+(\*\s+)/g, "\n$1")
+    .replace(/\s+(Tất nhiên là được rồi)/g, "\n\n$1")
+    .replace(/\s+(Để mua hàng,?)/g, "\n\n$1")
+    .replace(/\s+(Với các đơn hàng)/g, "\n\n$1")
+    .replace(/\s+(Ngoài ra,)/g, "\n\n$1")
+    .replace(/\s+(Đặc biệt,)/g, "\n\n$1")
     .replace(/\s+(Lưu ý:)/g, "\n\n$1")
-    .replace(/\s+(Bạn đang quan tâm)/g, "\n\n$1");
+    .replace(/\s+(Bạn có thể)/g, "\n\n$1")
+    .replace(/\s+(Bạn đang quan tâm)/g, "\n\n$1")
+    .replace(/\s+(Nếu cần hỗ trợ)/g, "\n\n$1");
+
+  const emphasizeKeywords = (line) => line.replace(/(^|[\s.,:;!?()])((?:Sản phẩm)|(?:Giỏ hàng)|(?:Thanh toán)|(?:Đơn hàng)|(?:Tài khoản))(?=($|[\s.,:;!?()]))/g, (match, prefix, keyword) => {
+    const before = line.slice(0, Math.max(0, line.indexOf(match)));
+    return before.endsWith("<strong>") ? match : `${prefix}<strong>${keyword}</strong>`;
+  });
 
   const lines = normalized.split(/\n+/).map((line) => line.trim()).filter(Boolean);
   if (!lines.length) return "";
@@ -202,14 +216,14 @@ function formatChatbotReply(text = "") {
         html.push("<ol class=\"chatbot-reply-list\">");
         listOpen = true;
       }
-      html.push(`<li>${numbered ? numbered[2] : bullet[1]}</li>`);
+      html.push(`<li>${emphasizeKeywords(numbered ? numbered[2] : bullet[1])}</li>`);
       return;
     }
     if (listOpen) {
       html.push("</ol>");
       listOpen = false;
     }
-    html.push(`<p>${line}</p>`);
+    html.push(`<p>${emphasizeKeywords(line)}</p>`);
   });
   if (listOpen) html.push("</ol>");
   return html.join("");
@@ -461,6 +475,7 @@ export function initializePage({ render, mount = () => {}, activePath = "/", sta
 
   refresh();
 }
+
 
 
 

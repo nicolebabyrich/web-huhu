@@ -7321,3 +7321,14 @@ input[type="file"].form-control::-webkit-file-upload-button:hover {
 .chatbot-message--user .chatbot-bubble strong {
   color: inherit;
 }
+
+/* Chatbot end-user readability polish. */
+.chatbot-message--bot .chatbot-bubble strong {
+  color: #fff4da;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(226, 176, 91, 0.22);
+}
+
+.chatbot-message--bot .chatbot-bubble p + p {
+  margin-top: 0.45rem;
+}
