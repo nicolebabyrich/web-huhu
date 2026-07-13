@@ -1,0 +1,11 @@
+﻿.env
+.env.*
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Tài liệu test thô / file tạm không đưa vào repo nộp
+DoAn_PhatTrienWeb bug test*.pdf
+add tính năng/
+*.tmp
+*.bak
