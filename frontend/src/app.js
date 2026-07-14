@@ -1,4 +1,4 @@
-﻿import { MainLayout } from "./layouts/MainLayout.js";
+import { MainLayout } from "./layouts/MainLayout.js";
 import { handleAccountGlobalAction } from "./modules/account/AccountPage.js";
 import { addToCart } from "./services/store.js";
 import { escapeHtml, isValidEmail, normalizeEmail } from "./utils/format.js";
@@ -151,8 +151,8 @@ function mountSharedForms() {
   });
 }
 
-const CHATBOT_STORAGE_KEY = "anstore.chatbot.state";
-const CHATBOT_GREETING = "ChÃ o báº¡n, mÃ¬nh lÃ  ThÆ° Äá»“ng. Báº¡n cÃ³ thá»ƒ há»i mÃ¬nh vá» sáº£n pháº©m, giá» hÃ ng, Ä‘Æ¡n hÃ ng hoáº·c cÃ¡ch mua táº¡i áº¨N Store.";
+const CHATBOT_STORAGE_KEY = "anstore.chatbot.state.v3";
+const CHATBOT_GREETING = "Chào bạn, mình là Thư Đồng. Bạn có thể hỏi mình về sản phẩm, giỏ hàng, đơn hàng hoặc cách mua tại ẨN Store.";
 
 function readChatbotState() {
   try {
@@ -290,20 +290,20 @@ async function submitChatbotMessage(form) {
       })
     });
     const payload = await result.json().catch(() => ({}));
-    if (!result.ok) throw new Error(payload.message || "KhÃ´ng thá»ƒ káº¿t ná»‘i trá»£ lÃ½ lÃºc nÃ y.");
+    if (!result.ok) throw new Error(payload.message || "Mình chưa có phản hồi phù hợp lúc này.");
     const fresh = readChatbotState();
     writeChatbotState({
       ...fresh,
       open: true,
       interactionId: payload.interactionId || fresh.interactionId,
-      messages: [...fresh.messages, { role: "bot", text: payload.message || "MÃ¬nh chÆ°a cÃ³ pháº£n há»“i phÃ¹ há»£p lÃºc nÃ y." }]
+      messages: [...fresh.messages, { role: "bot", text: payload.message || "Mình chưa có phản hồi phù hợp lúc này." }]
     });
   } catch (error) {
     const fresh = readChatbotState();
     writeChatbotState({
       ...fresh,
       open: true,
-      messages: [...fresh.messages, { role: "bot", text: error.message || "Gemini Ä‘ang quÃ¡ táº£i. Báº¡n thá»­ láº¡i sau Ã­t phÃºt nhÃ©." }]
+      messages: [...fresh.messages, { role: "bot", text: error.message || "Gemini đang quá tải. Bạn thử lại sau ít phút nhé." }]
     });
   } finally {
     renderChatbotMessages(readChatbotState());

@@ -7332,3 +7332,12 @@ input[type="file"].form-control::-webkit-file-upload-button:hover {
 .chatbot-message--bot .chatbot-bubble p + p {
   margin-top: 0.45rem;
 }
+
+/* Chatbot mobile text: force readable Vietnamese UI font. */
+.chatbot-message .chatbot-bubble,
+.chatbot-form textarea,
+.chatbot-form button,
+.chatbot-note {
+  font-family: var(--font-ui), Arial, sans-serif !important;
+  letter-spacing: 0;
+}
