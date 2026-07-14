@@ -388,7 +388,7 @@ export function initializePage({ render, mount = () => {}, activePath = "/", sta
         title,
         eyebrow: "Hồ sơ nhân vật",
         modifier: "character",
-        content: `<div class="character-profile-modal"><img src="${escapeHtml(image)}" alt="${escapeHtml(title)}"><div><p>${escapeHtml(story)}</p><div class="button-row character-profile-actions"><a class="button button--secondary button--small" href="${ROUTES.products}">Xem sản phẩm liên quan</a>${model ? `<button class="button button--primary button--small" type="button" data-action="open-3d-model" data-model-title="${escapeHtml(title)}" data-model-src="${escapeHtml(model)}" data-model-poster="${escapeHtml(image)}">Xem m? h?nh 3D</button>` : ""}</div></div></div>`
+        content: `<div class="character-profile-modal"><img src="${escapeHtml(image)}" alt="${escapeHtml(title)}"><div><p>${escapeHtml(story)}</p><div class="button-row character-profile-actions"><a class="button button--secondary button--small" href="${ROUTES.products}">Xem sản phẩm liên quan</a>${model ? `<button class="button button--primary button--small" type="button" data-action="open-3d-model" data-model-title="${escapeHtml(title)}" data-model-src="${escapeHtml(model)}" data-model-poster="${escapeHtml(image)}">Xem mô hình 3D</button>` : ""}</div></div></div>`
       });
       return;
     }
